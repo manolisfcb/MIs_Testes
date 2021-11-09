@@ -1,9 +1,12 @@
 from os import listdir
 from os.path import isfile, join
+import hashlib
 import glob
 import docx
 import re
 import string
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
 import difflib
 import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
@@ -44,6 +47,23 @@ def para_text_extract(files):
     print('Tamanho total: ' + str(doc_sizes_total))
 
     return docs, texts, para_texts
+
+def get_hash(file_dir, chunk_size=1024):
+    '''
+        Recebe o caminho de um arquivo e retorna o hash acumulado
+    '''
+    hash = hashlib.sha256()
+    with open(file_dir, "rb") as f:
+        # lê o primeiro bloco do arquivo
+        chunk = f.read(chunk_size)
+        # fica lendo arquivo até o fim e atualiza o hash
+        while chunk:
+            hash.update(chunk)
+            chunk = f.read(chunk_size)
+
+    # Returna hex checksum
+    return hash.hexdigest()
+
 
 
 def date_extract(docs):
