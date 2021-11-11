@@ -48,6 +48,20 @@ def para_text_extract(files):
 
     return docs, texts, para_texts
 
+
+
+def text_info(para_texts):
+    '''
+        Extrai número de documentos, tamanho de cada documento e tamanho total dos documentos
+    '''
+
+    n_docs = len(para_texts)
+    docs_len = [len(para) for para in para_texts]
+    total_len = sum(docs_len)
+
+    return n_docs, docs_len, total_len
+
+
 def get_hash(file_dir, chunk_size=1024):
     '''
         Recebe o caminho de um arquivo e retorna o hash acumulado
@@ -105,6 +119,38 @@ def combine_text(list_of_text):
 
     combined_text = ' '.join(list_of_text)
     return combined_text
+
+def tokenize(para_text):
+    '''
+        Tokeniza em palavras, coloca em minúsculas, mantém apenas tokens alfanuméricos e remove stopwords a partir de lista de parágrafos.
+        Para ser usada com pd.DataFrame(df['coluna'].apply(tokenize))
+    Arg:
+        Lista de parágrafos
+    Return:
+        Lista de lista de tokens
+    '''
+    stops = stopwords.words('portuguese')
+    stops.append('s')
+
+    para_group = []
+    for para in para_text:
+        lower_tokens = word_tokenize(para.lower())
+        alnum_tokens = [t for t in lower_tokens if t.isalnum()]
+        no_stops = [t for t in alnum_tokens if t not in stops]
+        para_group.append(no_stops)
+
+    return para_group
+
+
+def para_tokenize(paragraph):
+    stops = stopwords.words('portuguese')
+    stops.append('s')
+
+    lower_tokens = word_tokenize(paragraph.lower())
+    alnum_tokens = [t for t in lower_tokens if t.isalnum()]
+    no_stops = [t for t in alnum_tokens if t not in stops]
+
+    return no_stops
 
 
 def clean_text_round1(text):

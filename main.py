@@ -11,7 +11,7 @@ def text_preprocessing(fd):
     files = get_text_name(folder_dir)
 
     # lê caminhos dos arquivos da pasta
-    files_dir = get_text_dir(folder)
+    files_dir = get_text_dir(folder_dir)
 
     # retorna dicionário com hash e caminho dos documentos lidos
     hashes = [get_hash(file_dir) for file_dir in files_dir]
@@ -113,7 +113,7 @@ def text_preprocessing(fd):
 
 folder = input('Enter files dir')
 if len(folder)==0:
-    folder_dir ='debentures_data/'
+    folder_dir =r'debentures_data/'
 else:
     folder_dir = folder
 
