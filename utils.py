@@ -160,8 +160,7 @@ def clean_text_round1(text):
 
     text = text.lower()
     text = re.sub('\[.*?\]','',text)
-    text = re.sub('[%s]' %re.escape(string.punctuation
-                                    ),'',text)
+    text = re.sub('[%s]' %re.escape(string.punctuationg),'',text)
     text = re.sub('\w*\d\w*','',text)
     return text
 

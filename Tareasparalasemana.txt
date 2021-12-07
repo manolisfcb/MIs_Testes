@@ -1,0 +1,4 @@
+ler nomes de documentos de pasta com input de argumento no script *
+ler as datas dos documentos *
+colocar documentos ordenados por data *
+extrair documentos *eparar por parágrafos
