@@ -17,8 +17,7 @@
   },
   "labels":{
     "entity_ruler":[
-      "AF",
-      "Emissor"
+      "ORG"
     ]
   },
   "pipeline":[
